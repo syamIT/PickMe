@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0a2146" />
+    <title>PickMe | Corporate Mobility</title>
+    <style>
+      :root {
+        --navy: #0a2146;
+        --blue: #2563eb;
+        --pale: #eff5ff;
+        --ink: #172d4d;
+        --muted: #6d7e98;
+        --line: #e2eafa;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f5f8fd;
+        color: var(--ink);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          Arial,
+          sans-serif;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-weight: 700;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #8ab8ff;
+      }
+      button.primary {
+        background: var(--blue);
+        color: white;
+      }
+      button.soft {
+        background: #e8f0ff;
+        color: #1c57c1;
+      }
+      button.ghost {
+        background: white;
+        color: #214a8b;
+        border: 1px solid #dce6f7;
+      }
+      button.red {
+        background: #e53e5c;
+        color: white;
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      .app {
+        max-width: 1180px;
+        margin: auto;
+        padding: 18px;
+      }
+      .header {
+        background: var(--navy);
+        color: white;
+        border-radius: 22px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brandmark {
+        background: #2879f5;
+        border-radius: 13px;
+        padding: 9px;
+        font-size: 25px;
+      }
+      .brand strong {
+        font-size: 26px;
+        letter-spacing: -1px;
+      }
+      .brand small {
+        display: block;
+        color: #bcd5f8;
+        font-size: 10px;
+        letter-spacing: 1.7px;
+      }
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+      }
+      .nav button {
+        background: white;
+        border: 1px solid var(--line);
+        color: #37577d;
+      }
+      .nav button.active {
+        background: var(--blue);
+        color: white;
+        border-color: var(--blue);
+      }
+      .hero {
+        background: linear-gradient(120deg, #0d2d5d, #1755b0);
+        color: white;
+        border-radius: 22px;
+        padding: 27px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin: 12px 0 20px;
+        overflow: hidden;
+      }
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: clamp(24px, 4vw, 37px);
+        letter-spacing: -1px;
+      }
+      .hero p {
+        margin: 0;
+        color: #d7e7ff;
+        line-height: 1.5;
+      }
+      .hero .carhero {
+        font-size: 76px;
+        filter: drop-shadow(0 9px 8px #07172e);
+        white-space: nowrap;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 8px 25px #183e7409;
+      }
+      .card h2 {
+        margin: 0 0 14px;
+        font-size: 20px;
+      }
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 13px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 11px 0;
+      }
+      .field label {
+        font-size: 13px;
+        color: #46617e;
+        font-weight: 700;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        border: 1px solid #d7e3f3;
+        border-radius: 11px;
+        padding: 12px;
+        background: #fbfdff;
+        width: 100%;
+        color: #213c5d;
+      }
+      .field textarea {
+        min-height: 75px;
+        resize: vertical;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 14px;
+      }
+      .stat {
+        padding: 15px;
+        border-radius: 15px;
+        background: #f0f6ff;
+      }
+      .stat b {
+        font-size: 25px;
+        display: block;
+        color: #1953af;
+      }
+      .pill {
+        display: inline-block;
+        background: #e7f1ff;
+        color: #1859ba;
+        border-radius: 99px;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 750;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .item {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .item:last-child {
+        border-bottom: 0;
+      }
+      .item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .notice {
+        background: #f0f6ff;
+        border: 1px solid #d5e6ff;
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin: 12px 0;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .warning {
+        background: #fff5eb;
+        border-color: #ffe0ba;
+      }
+      .footer {
+        text-align: center;
+        color: #7185a0;
+        font-size: 12px;
+        margin: 24px 0;
+      }
+      .hide {
+        display: none !important;
+      }
+      .role {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        width: 100%;
+        background: #f4f8ff;
+        color: #193e72;
+        border: 1px solid #dce9fc;
+        margin: 9px 0;
+      }
+      .role span:first-child {
+        font-size: 27px;
+      }
+      .role small {
+        display: block;
+        font-weight: 400;
+        color: #72849a;
+        margin-top: 3px;
+      }
+      .switch {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .switch select {
+        background: #183a6b;
+        color: white;
+        border: 1px solid #5276ab;
+        border-radius: 10px;
+        padding: 8px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 18px;
+        left: 18px;
+        max-width: 420px;
+        margin-left: auto;
+        background: #102e58;
+        color: white;
+        border-radius: 14px;
+        padding: 14px 17px;
+        box-shadow: 0 10px 35px #112d5360;
+        z-index: 20;
+        display: none;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: #061a37dd;
+        z-index: 50;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .overlay.on {
+        display: flex;
+      }
+      .loader {
+        background: #0e2e5a;
+        border: 1px solid #4d79ae;
+        border-radius: 24px;
+        width: min(520px, 100%);
+        padding: 25px;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+      }
+      .road {
+        height: 145px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 3px dashed #719ac9;
+        margin: 14px 0;
+      }
+      .moving {
+        position: absolute;
+        bottom: 0;
+        left: -170px;
+        width: 145px;
+        animation: drive 2s ease-in-out forwards;
+      }
+      .zu {
+        font-size: 21px;
+        font-weight: 900;
+        color: #bde4ff;
+        transform: rotate(-8deg);
+      }
+      .vehicle {
+        position: relative;
+        width: 145px;
+        height: 65px;
+      }
+      .bodycar {
+        position: absolute;
+        left: 8px;
+        bottom: 13px;
+        width: 130px;
+        height: 35px;
+        background: linear-gradient(#64bdff, #236cdd);
+        border-radius: 24px 28px 12px 12px;
+        border: 2px solid #b2e2ff;
+      }
+      .roof {
+        position: absolute;
+        left: 37px;
+        bottom: 44px;
+        width: 70px;
+        height: 24px;
+        background: #4ea7f5;
+        border-radius: 25px 30px 0 0;
+        transform: skew(-13deg);
+        border: 2px solid #a6d9ff;
+      }
+      .window {
+        position: absolute;
+        left: 50px;
+        bottom: 46px;
+        width: 42px;
+        height: 17px;
+        background: #c5efff;
+        border-radius: 14px 15px 2px 2px;
+      }
+      .wheel {
+        position: absolute;
+        bottom: 4px;
+        width: 25px;
+        height: 25px;
+        background: #18273f;
+        border: 5px solid #e4f2ff;
+        border-radius: 50%;
+        animation: spin 0.25s linear infinite;
+      }
+      .w1 {
+        left: 31px;
+      }
+      .w2 {
+        right: 24px;
+      }
+      .smoke {
+        position: absolute;
+        left: 1px;
+        bottom: 23px;
+        width: 11px;
+        height: 11px;
+        background: #d9e8f5;
+        border-radius: 50%;
+        animation: puff 1s ease-out infinite;
+        opacity: 0;
+      }
+      .smoke.s2 {
+        animation-delay: 0.33s;
+      }
+      .smoke.s3 {
+        animation-delay: 0.66s;
+      }
+      .headlight {
+        position: absolute;
+        right: 6px;
+        bottom: 28px;
+        background: #fff3a1;
+        width: 10px;
+        height: 7px;
+        border-radius: 5px;
+      }
+      @keyframes drive {
+        from {
+          left: -170px;
+        }
+        to {
+          left: 110%;
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes puff {
+        0% {
+          transform: translate(0, 0) scale(0.3);
+          opacity: 0.65;
+        }
+        100% {
+          transform: translate(-42px, -13px) scale(2);
+          opacity: 0;
+        }
+      }
+      @media (max-width: 680px) {
+        .grid,
+        .grid.three {
+          grid-template-columns: 1fr;
+        }
+        .app {
+          padding: 10px;
+        }
+        .hero {
+          padding: 20px;
+        }
+        .hero .carhero {
+          font-size: 48px;
+        }
+        .header {
+          padding: 16px;
+        }
+        .nav {
+          gap: 5px;
+        }
+        .nav button {
+          font-size: 12px;
+          padding: 9px 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .moving,
+        .wheel,
+        .smoke {
+          animation: none;
+        }
+        .moving {
+          left: 30%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <span class="brandmark">🚙</span>
+          <div><strong>PickMe</strong><small>YOUR SHIFT. OUR RIDE.</small></div>
+        </div>
+        <div class="switch">
+          <span id="demoLabel" class="small">Interactive Demo</span
+          ><select id="lang" aria-label="Language">
+            <option value="en">English</option>
+            <option value="te">తెలుగు</option>
+          </select>
+        </div>
+      </header>
+      <nav class="nav" id="nav"></nav>
+      <main id="main"></main>
+      <footer class="footer">
+        PickMe © 2026 · Demonstration only · Sample data stored on this device ·
+        Not a live transport or emergency service
+      </footer>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="overlay" id="overlay">
+      <div class="loader">
+        <h2 style="margin: 0">PickMe 💙</h2>
+        <p>Beep beep! ZUII! 🚙</p>
+        <div class="road">
+          <div class="moving">
+            <div class="zu">ZUII!</div>
+            <div class="vehicle">
+              <i class="smoke"></i><i class="smoke s2"></i
+              ><i class="smoke s3"></i><i class="roof"></i><i class="window"></i
+              ><i class="bodycar"></i><i class="headlight"></i
+              ><i class="wheel w1"></i><i class="wheel w2"></i>
+            </div>
+          </div>
+        </div>
+        <small>Your journey is getting ready...</small>
+      </div>
+    </div>
+    <script>
+      const KEY = "pickme_complete_demo_1";
+      const initial = {
+        shifts: [
+          {
+            id: 1,
+            name: "General Shift",
+            start: "09:00",
+            end: "18:00",
+            days: "Mon–Fri",
+          },
+          {
+            id: 2,
+            name: "Night Shift",
+            start: "21:00",
+            end: "06:00",
+            days: "Mon–Sat",
+          },
+          {
+            id: 3,
+            name: "Morning Shift",
+            start: "06:00",
+            end: "15:00",
+            days: "Mon–Fri",
+          },
+        ],
+        drivers: [
+          {
+            id: 1,
+            name: "Ravi",
+            route: "Miyapur → Hitech City",
+            seats: 4,
+            used: 0,
+            available: true,
+            phone: "Demo driver",
+          },
+          {
+            id: 2,
+            name: "Kiran",
+            route: "Kukatpally → Gachibowli",
+            seats: 4,
+            used: 0,
+            available: true,
+            phone: "Demo driver",
+          },
+          {
+            id: 3,
+            name: "Anil",
+            route: "LB Nagar → Financial District",
+            seats: 6,
+            used: 0,
+            available: true,
+            phone: "Demo driver",
+          },
+        ],
+        bookings: [],
+        vehicles: [],
+        reminders: [],
+      };
+      let state;
+      try {
+        state =
+          JSON.parse(localStorage.getItem(KEY)) || structuredClone(initial);
+      } catch (e) {
+        state = JSON.parse(JSON.stringify(initial));
+      }
+      let page = "home",
+        lang = "en",
+        pendingTimer;
+      const esc = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const t = (en, te) => (lang === "te" ? te : en);
+      const save = () => {
+        try {
+          localStorage.setItem(KEY, JSON.stringify(state));
+        } catch (e) {}
+      };
+      const notify = (msg) => {
+        const e = document.getElementById("toast");
+        e.textContent = msg;
+        e.style.display = "block";
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => (e.style.display = "none"), 4400);
+      };
+      const animate = (fn) => {
+        const e = document.getElementById("overlay");
+        e.classList.add("on");
+        clearTimeout(pendingTimer);
+        pendingTimer = setTimeout(() => {
+          e.classList.remove("on");
+          fn?.();
+        }, 2100);
+      };
+      const navs = [
+        ["home", "🏠", "Home", "హోమ్"],
+        ["employee", "👩‍💼", "Employee", "ఉద్యోగి"],
+        ["driver", "🚘", "Driver", "డ్రైవర్"],
+        ["manager", "🏢", "Company Manager", "కంపెనీ మేనేజర్"],
+        ["owner", "📋", "Car Owner", "కార్ ఓనర్"],
+        ["admin", "🛡️", "Admin", "అడ్మిన్"],
+      ];
+      function go(p) {
+        animate(() => {
+          page = p;
+          render();
+          window.scrollTo(0, 0);
+        });
+      }
+      function field(label, id, type = "text", placeholder = "", extra = "") {
+        return `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="${type}" placeholder="${esc(placeholder)}" ${extra}></div>`;
+      }
+      function options(arr) {
+        return arr
+          .map((a) => `<option value="${esc(a[0])}">${esc(a[1])}</option>`)
+          .join("");
+      }
+      function btn(label, action, cls = "primary") {
+        return `<button class="${cls}" onclick="${action}">${label}</button>`;
+      }
+      function render() {
+        document.getElementById("nav").innerHTML = navs
+          .map(
+            ([p, icon, en, te]) =>
+              `<button class="${p === page ? "active" : ""}" onclick="go('${p}')">${icon} ${t(en, te)}</button>`,
+          )
+          .join("");
+        document.getElementById("main").innerHTML = {
+          home,
+          employee,
+          driver,
+          manager,
+          owner,
+          admin,
+        }[page]();
+        document.getElementById("lang").value = lang;
+      }
+      function hero(title, subtitle, emoji = "🚙") {
+        return `<section class="hero"><div><h1>${title}</h1><p>${subtitle}</p></div><div class="carhero">${emoji}</div></section>`;
+      }
+      function home() {
+        return (
+          hero(
+            t(
+              "Corporate mobility, without the chaos.",
+              "కార్పొరేట్ ప్రయాణం ఇప్పుడు మరింత సులభం.",
+            ),
+            t(
+              "Smart shifts. Automatic cab allocation. Safer journeys. One premium platform.",
+              "స్మార్ట్ షిఫ్ట్స్, ఆటో క్యాబ్ కేటాయింపు, సురక్షిత ప్రయాణం.",
+            ),
+          ) +
+          `<div class="grid three">${[
+            [
+              "employee",
+              "👩‍💼",
+              "Employee Booking",
+              "Book & track company rides",
+            ],
+            ["driver", "🚘", "Driver Portal", "Trips, routes & navigation"],
+            ["manager", "🏢", "Company Manager", "Set custom company shifts"],
+            ["owner", "📋", "Attach Your Car", "Apply to join the fleet"],
+            ["admin", "🛡️", "Admin Console", "Approvals & operations"],
+            ["employee", "🆘", "Employee Safety", "SOS demo & reminders"],
+          ]
+            .map(
+              ([p, ic, name, sub]) =>
+                `<article class="card"><div style="font-size:34px">${ic}</div><h2>${name}</h2><p class="muted small">${sub}</p>${btn("Explore →", `go('${p}')`, "soft")}</article>`,
+            )
+            .join(
+              "",
+            )}</div><div class="notice warning">${t("Demo only: portals are not password-protected, notifications are simulated, and data is local to this browser. Do not upload real identity documents or sensitive employee information.", "ఇది డెమో మాత్రమే. నిజమైన వ్యక్తిగత పత్రాలు అప్‌లోడ్ చేయవద్దు.")}</div>`
+        );
+      }
+      function employee() {
+        const choices = state.shifts.map((s) => [
+          s.id,
+          `${s.name} · ${s.start}–${s.end}`,
+        ]);
+        return (
+          hero(
+            t("Your office ride, sorted.", "మీ ఆఫీస్ క్యాబ్ రెడీ!"),
+            t(
+              "Book a cab for your company shift and see automatic driver matching.",
+              "షిఫ్ట్ ప్రకారం క్యాబ్ బుక్ చేసుకోండి.",
+            ),
+            "👩‍💼",
+          ) +
+          `<div class="grid"><section class="card"><h2>${t("Book a company cab", "కంపెనీ క్యాబ్ బుక్ చేయండి")}</h2>${field(t("Employee name (demo)", "ఉద్యోగి పేరు"), "empName", "text", "e.g. Santosh")}${field(t("Pickup address", "పికప్ అడ్రస్"), "pickup", "text", "e.g. Miyapur, Hyderabad")}<div class="field"><label>${t("Office / destination", "ఆఫీస్ గమ్యం")}</label><select id="destination">${options(
+            [
+              ["Hitech City", "Hitech City"],
+              ["Gachibowli", "Gachibowli"],
+              ["Financial District", "Financial District"],
+            ],
+          )}</select></div><div class="field"><label>${t("Company shift", "కంపెనీ షిఫ్ట్")}</label><select id="shift">${options(choices)}</select></div><div class="field"><label>${t("Seating preference", "సీటు ప్రాధాన్యత")}</label><select id="seat">${options(
+            [
+              ["Standard", "Standard"],
+              ["Front seat requested", "Front-seat preference / accessibility"],
+            ],
+          )}</select></div><div class="actions">${btn(t("🚙 Book Cab", "🚙 క్యాబ్ బుక్ చేయి"), "bookCab()")}${btn("🗺️ Check Pickup on Map", "pickupMap()", "soft")}</div><div class="notice">${t("Front-seat requests are preferences, subject to vehicle safety and availability. No medical reason is collected.", "ఫ్రంట్ సీట్ ప్రాధాన్యత భద్రత, అందుబాటుపై ఆధారపడి ఉంటుంది.")}</div></section><section class="card"><h2>${t("My bookings", "నా బుకింగ్స్")}</h2>${
+            state.bookings.length
+              ? state.bookings
+                  .slice()
+                  .reverse()
+                  .map(
+                    (b) =>
+                      `<div class="item"><div class="row"><strong>${esc(b.name)} · ${esc(b.shiftName)}</strong><span class="pill">${esc(b.status)}</span></div><div class="small muted">${esc(b.pickup)} → ${esc(b.destination)}</div><div class="small">${b.driver ? `Driver: ${esc(b.driver)} · ${esc(b.route)}` : "No driver match yet — admin review needed"}</div><div class="actions">${btn("🗺️ Pickup Map", `navigate('${encodeURIComponent(b.pickup)}')`, "soft")}${btn("Cancel", `cancelBooking(${b.id})`, "ghost")}</div></div>`,
+                  )
+                  .join("")
+              : '<p class="muted">No bookings yet. Create a sample ride.</p>'
+          }<h3 style="margin-top:20px">🔔 ${t("Shift reminders", "షిఫ్ట్ రిమైండర్లు")}</h3><p class="small muted">${t("Try sample notifications. Actual push notifications are not enabled.", "డెమో నోటిఫికేషన్స్ మాత్రమే.")}</p><div class="actions">${btn("☀️ Login Time", "remind('in')", "soft")}${btn("🏠 Logout Time", "remind('out')", "soft")}</div><hr style="border:0;border-top:1px solid #e5edfa;margin:22px 0"><h3>🆘 ${t("Emergency SOS", "ఎమర్జెన్సీ SOS")}</h3><p class="small muted">${t("Demo SOS shows a warning only; no alert is sent.", "డెమో మాత్రమే, ఎవరికి అలర్ట్ వెళ్లదు.")}</p>${btn("🆘 SOS Demo", "sos()", "red")} ${btn("📞 Call 112", "location.href='tel:112'", "ghost")}</section></div>`
+        );
+      }
+      function bookCab() {
+        const name = document.getElementById("empName").value.trim(),
+          pickup = document.getElementById("pickup").value.trim(),
+          destination = document.getElementById("destination").value,
+          shiftId = Number(document.getElementById("shift").value),
+          seat = document.getElementById("seat").value;
+        if (!name || !pickup) {
+          notify("Please enter employee name and pickup address.");
+          return;
+        }
+        const shift = state.shifts.find((x) => x.id === shiftId);
+        const matches = state.drivers.filter(
+          (d) =>
+            d.available &&
+            d.used < d.seats &&
+            d.route.toLowerCase().includes(destination.toLowerCase()) &&
+            d.route.split("→")[0].trim().toLowerCase().split(" ")[0] ===
+              pickup.toLowerCase().split(/[ ,]/)[0],
+        );
+        const d = matches.sort((a, b) => a.used - b.used)[0];
+        if (d) d.used++;
+        state.bookings.push({
+          id: Date.now(),
+          name,
+          pickup,
+          destination,
+          shiftName: shift.name,
+          shiftStart: shift.start,
+          seat,
+          driver: d?.name || null,
+          driverId: d?.id || null,
+          route: d?.route || null,
+          status: d ? "Auto Assigned" : "Pending Review",
+        });
+        save();
+        animate(() => {
+          render();
+          notify(
+            d
+              ? `🚙 ZUII! Cab assigned to ${d.name} (demo).`
+              : "No route match; booking pending review (demo).",
+          );
+        });
+      }
+      function cancelBooking(id) {
+        const b = state.bookings.find((x) => x.id === id);
+        if (!b) return;
+        if (b.driverId) {
+          const d = state.drivers.find((x) => x.id === b.driverId);
+          if (d) d.used = Math.max(0, d.used - 1);
+        }
+        state.bookings = state.bookings.filter((x) => x.id !== id);
+        save();
+        render();
+        notify("Demo booking cancelled.");
+      }
+      function navigate(address) {
+        window.open(
+          "https://www.google.com/maps/search/?api=1&query=" + address,
+          "_blank",
+          "noopener",
+        );
+      }
+      function pickupMap() {
+        const p = document.getElementById("pickup").value.trim();
+        if (!p) return notify("Enter pickup address first.");
+        navigate(encodeURIComponent(p));
+      }
+      function remind(which) {
+        notify(
+          which === "in"
+            ? t(
+                "🚙 Boss, get ready! Your office cab is coming!",
+                "🚙 బాస్, రెడీ అవ్వు! క్యాబ్ వస్తోంది!",
+              )
+            : t(
+                "🏠 Enough work, boss! Time to head home!",
+                "🏠 చాలు బాస్! ఇంటికి పోదాం!",
+              ),
+        );
+      }
+      function sos() {
+        if (
+          confirm(
+            "DEMO SOS ONLY. No emergency alert will be sent. Show a sample alert?",
+          )
+        )
+          notify(
+            "🆘 DEMO ALERT: Transport admin would receive trip and GPS details in the live system. For real emergencies in India call 112.",
+          );
+      }
+      function driver() {
+        return (
+          hero(
+            t("Driver command center", "డ్రైవర్ డాష్‌బోర్డ్"),
+            t(
+              "Your availability, assigned pickups and one-tap map navigation.",
+              "మీ ట్రిప్స్, పికప్ వివరాలు, మ్యాప్ నావిగేషన్.",
+            ),
+            "🚘",
+          ) +
+          `<div class="grid"><section class="card"><h2>${t("Driver availability", "డ్రైవర్ అందుబాటు")}</h2>${state.drivers.map((d) => `<div class="item"><div class="row"><div><strong>${esc(d.name)}</strong><span class="small muted">${esc(d.route)}</span></div><span class="pill">${d.used}/${d.seats} seats</span></div><div class="actions">${btn(d.available ? "🟢 Available" : "⚪ Unavailable", `toggleDriver(${d.id})`, "soft")}${btn("🗺️ Route", `navigate('${encodeURIComponent(d.route.replace("→", " to "))}')`, "ghost")}</div></div>`).join("")}<div class="notice">${t("Weekly recurring routes are preconfigured in this demo. A production driver account would show only that driver’s trips.", "వీక్లీ రూట్లు డెమోలో ముందుగానే సెట్ చేశాం.")}</div></section><section class="card"><h2>${t("Assigned pickups", "కేటాయించిన పికప్స్")}</h2>${
+            state.bookings.filter((b) => b.driver).length
+              ? state.bookings
+                  .filter((b) => b.driver)
+                  .map(
+                    (b) =>
+                      `<div class="item"><strong>${esc(b.name)} · ${esc(b.driver)}</strong><div class="small muted">${esc(b.pickup)} → ${esc(b.destination)}</div><div class="small">${esc(b.shiftName)} · ${esc(b.shiftStart)} · ${esc(b.seat)}</div><div class="actions">${btn("📍 Navigate to Pickup", `navigate('${encodeURIComponent(b.pickup)}')`, "primary")}</div></div>`,
+                  )
+                  .join("")
+              : '<p class="muted">No assigned rides yet. Book a sample employee trip first.</p>'
+          }</section></div>`
+        );
+      }
+      function toggleDriver(id) {
+        const d = state.drivers.find((x) => x.id === id);
+        d.available = !d.available;
+        save();
+        render();
+        notify(
+          `${d.name}: ${d.available ? "Available" : "Unavailable"} for new assignments.`,
+        );
+      }
+      function manager() {
+        return (
+          hero(
+            t("Company shift management", "కంపెనీ షిఫ్ట్ మేనేజ్‌మెంట్"),
+            t(
+              "Create your own office shift timings. Employees see only these configured shifts.",
+              "మీ కంపెనీ షిఫ్ట్ టైమింగ్స్ సెట్ చేయండి.",
+            ),
+            "🏢",
+          ) +
+          `<div class="grid"><section class="card"><h2>${t("Create a shift", "కొత్త షిఫ్ట్")}</h2>${field("Shift name", "shiftName", "text", "e.g. Second Shift")}${field("Shift starts", "shiftStart", "time", "", 'value="14:00"')}${field("Shift ends", "shiftEnd", "time", "", 'value="23:00"')}<div class="field"><label>Weekly recurrence</label><select id="shiftDays">${options(
+            [
+              ["Mon–Fri", "Monday – Friday"],
+              ["Mon–Sat", "Monday – Saturday"],
+              ["Every day", "Every day"],
+            ],
+          )}</select></div>${btn("＋ Add Company Shift", "addShift()")}<div class="notice">Overnight shifts (e.g. 21:00–06:00) are supported in this demo.</div></section><section class="card"><h2>Configured company shifts</h2>${state.shifts.map((s) => `<div class="item row"><div><strong>${esc(s.name)}</strong><span class="small muted">${esc(s.start)}–${esc(s.end)} · ${esc(s.days)}</span></div>${btn("Remove", `removeShift(${s.id})`, "ghost")}</div>`).join("")}</section></div>`
+        );
+      }
+      function addShift() {
+        const name = document.getElementById("shiftName").value.trim(),
+          start = document.getElementById("shiftStart").value,
+          end = document.getElementById("shiftEnd").value,
+          days = document.getElementById("shiftDays").value;
+        if (!name || !start || !end || start === end)
+          return notify(
+            "Enter a valid shift name and different start/end times.",
+          );
+        state.shifts.push({ id: Date.now(), name, start, end, days });
+        save();
+        animate(() => {
+          render();
+          notify("Company shift added.");
+        });
+      }
+      function removeShift(id) {
+        if (state.shifts.length <= 1) return notify("Keep at least one shift.");
+        state.shifts = state.shifts.filter((s) => s.id !== id);
+        save();
+        render();
+      }
+      function owner() {
+        return (
+          hero(
+            t("Attach your car to PickMe", "మీ కార్‌ను PickMe కి అటాచ్ చేయండి"),
+            t(
+              "Submit a demo vehicle application for admin review.",
+              "కార్ వివరాలు పంపి అడ్మిన్ అప్రూవల్ పొందండి.",
+            ),
+            "🚗",
+          ) +
+          `<div class="grid"><section class="card"><h2>Car Owner Application</h2>${field("Owner name", "ownerName", "text", "Your name")}${field("Contact number", "ownerPhone", "tel", "10-digit mobile number")}${field("Car model", "carModel", "text", "e.g. Maruti Dzire")}${field("Vehicle registration number", "regNumber", "text", "e.g. TS09AB1234")}<div class="field"><label>Available route</label><select id="ownerRoute">${options(
+            [
+              ["Miyapur → Hitech City", "Miyapur → Hitech City"],
+              ["Kukatpally → Gachibowli", "Kukatpally → Gachibowli"],
+              [
+                "LB Nagar → Financial District",
+                "LB Nagar → Financial District",
+              ],
+            ],
+          )}</select></div><div class="field"><label>Document checklist (demo only)</label><div class="notice">RC · Insurance · Permit · Driver license · Fitness / PUC as applicable. <b>Do not upload real documents here.</b> Secure file upload requires a backend.</div></div>${btn("Submit Demo Application", "submitVehicle()")}<div class="notice">Need help? ${btn("📞 Call 8143116585", "location.href='tel:8143116585'", "soft")}</div></section><section class="card"><h2>Application status</h2>${
+            state.vehicles.length
+              ? state.vehicles
+                  .slice()
+                  .reverse()
+                  .map(
+                    (v) =>
+                      `<div class="item"><div class="row"><strong>${esc(v.model)} · ${esc(v.reg)}</strong><span class="pill">${esc(v.status)}</span></div><div class="small muted">${esc(v.owner)} · ${esc(v.route)}</div></div>`,
+                  )
+                  .join("")
+              : '<p class="muted">No demo applications yet.</p>'
+          }</section></div>`
+        );
+      }
+      function submitVehicle() {
+        const owner = document.getElementById("ownerName").value.trim(),
+          phone = document.getElementById("ownerPhone").value.trim(),
+          model = document.getElementById("carModel").value.trim(),
+          reg = document.getElementById("regNumber").value.trim(),
+          route = document.getElementById("ownerRoute").value;
+        if (!owner || !/^\d{10}$/.test(phone) || !model || !reg)
+          return notify("Fill all fields and a 10-digit phone number.");
+        state.vehicles.push({
+          id: Date.now(),
+          owner,
+          phone,
+          model,
+          reg,
+          route,
+          status: "Pending Approval",
+        });
+        save();
+        animate(() => {
+          render();
+          notify("Demo application sent to local Admin dashboard.");
+        });
+      }
+      function admin() {
+        return (
+          hero(
+            t("PickMe operations console", "PickMe అడ్మిన్ డాష్‌బోర్డ్"),
+            t(
+              "Monitor demo bookings, vehicle requests and fleet status.",
+              "బుకింగ్స్, కార్ అటాచ్‌మెంట్ రిక్వెస్టులు చూడండి.",
+            ),
+            "🛡️",
+          ) +
+          `<div class="grid three"><div class="stat"><b>${state.bookings.length}</b>Bookings</div><div class="stat"><b>${state.vehicles.filter((v) => v.status === "Pending Approval").length}</b>Pending applications</div><div class="stat"><b>${state.drivers.filter((d) => d.available).length}</b>Available drivers</div></div><div class="grid" style="margin-top:16px"><section class="card"><h2>Vehicle attachment approvals</h2>${state.vehicles.length ? state.vehicles.map((v) => `<div class="item"><div class="row"><strong>${esc(v.owner)} · ${esc(v.model)}</strong><span class="pill">${esc(v.status)}</span></div><div class="small muted">${esc(v.reg)} · ${esc(v.route)}</div><div class="small">Contact: ${esc(v.phone)}</div><div class="actions">${btn("Approve", `vehicleStatus(${v.id},'Approved')`, "soft")}${btn("Reject", `vehicleStatus(${v.id},'Rejected')`, "ghost")}</div></div>`).join("") : '<p class="muted">No vehicle applications yet.</p>'}</section><section class="card"><h2>Booking activity</h2>${state.bookings.length ? state.bookings.map((b) => `<div class="item"><strong>${esc(b.name)} · ${esc(b.status)}</strong><div class="small muted">${esc(b.pickup)} → ${esc(b.destination)}</div><div class="small">Driver: ${esc(b.driver || "Not assigned")}</div></div>`).join("") : '<p class="muted">No bookings yet.</p>'}<h3 style="margin-top:20px">Customer support</h3><p>📞 <a href="tel:8143116585">8143116585</a></p></section></div><div class="notice warning"><b>Production note:</b> Server outages need a separate backup dispatch process. This demo does not implement real authentication, SMS/push alerts, emergency dispatch, or backend storage.</div><div class="actions">${btn("Reset all demo data", "resetDemo()", "ghost")}</div>`
+        );
+      }
+      function vehicleStatus(id, status) {
+        const v = state.vehicles.find((x) => x.id === id);
+        if (!v) return;
+        v.status = status;
+        save();
+        render();
+        notify(`Vehicle application ${status.toLowerCase()} (demo).`);
+      }
+      function resetDemo() {
+        if (
+          !confirm(
+            "Reset all sample bookings, shifts and applications on this device?",
+          )
+        )
+          return;
+        state = JSON.parse(JSON.stringify(initial));
+        save();
+        render();
+        notify("Demo reset complete.");
+      }
+      document.getElementById("lang").addEventListener("change", (e) => {
+        lang = e.target.value;
+        render();
+      });
+      render();
+    </script>
+  </body>
+</html>
